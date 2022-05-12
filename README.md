@@ -1,7 +1,7 @@
-# EXPERIMENT-NO--05-Distance measurement using Ultrasonic sensor
+# EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
 
 ## AIM: 
-To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
+To measure the distance of the given using ultrasonic sensor(HC-SR04) 
  
 ### COMPONENTS REQUIRED:
 1.	ultrasonic sensor module HC-SR04
@@ -51,22 +51,44 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 7.	Open the file of the program  and verify the error , clear if any errors that are existing 
 8.	Upload the program and check for the physical working. 
 9.	Ensure safety before powering up the device 
-10.	Plot the graph for the output voltage vs the resistance 
+10.	
+
+# program:
+~~~
+#define echopin 9
+#define trigpin 10
+long duration;
+int distance;
+
+void setup()
+{
+  pinMode(trigpin, OUTPUT);
+  pinMode(echopin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(trigpin, LOW);
+  delayMicroseconds(2); // Wait for 1000 millisecond(s)
+  digitalWrite(trigpin, HIGH);
+  delayMicroseconds(10); // Wait for 1000 millisecond(s)
+  digitalWrite(trigpin, LOW);
+  duration = pulseIn(echopin, HIGH);
+  distance = duration * 0.034/2;
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+}
+
+~~~
+# output
+![](Screenshot%202022-05-12%20055006.png)
+![](Screenshot%202022-05-12%20055228.png)
 
 
-### PROGRAM 
-
-### Distance vs measurement table 
-
-
-
-
-
-
-
-
-### RESULTS
-
+# RESULTS
+Thus the distance value is measured in 'CM' using ultrasonic sensor
 
 
  
